@@ -2,7 +2,7 @@
 requirements.txt
 web.config
 .gitattributes
-ReadMe*
+ReadMe-wabr*
 *.bat
 WabrPhp*
 php.ini

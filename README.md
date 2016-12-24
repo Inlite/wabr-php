@@ -4,6 +4,11 @@
 This `wabr-php` SDK  simplifies the WABR client-side PHP development.<br>  Use `wabr.php` from this repository in your project;
 Use sample code from `test.php` and `sample_code.php`
 
+Uncomment in `php.ini`
+```
+extension=php_curl.dll
+```
+
 If your PHP source files with  UTF-8 character the following should be set in `php.ini`
 ```
 mbstring.internal_encoding = UTF-8

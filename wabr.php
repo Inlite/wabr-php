@@ -197,11 +197,16 @@ class WAHttpRequest
         
         $postfields = $queries;
         $cnt = 0; // fields in PHP array require unique names 
+        $version = explode('.', PHP_VERSION);
         foreach ($files as $file)
         {
             $cnt = $cnt + 1;
-            $postfields = array_merge($postfields,  array(('file' . $cnt) => '@' . $file  . ';filename=' . basename($file)));
-        }        
+            if ($version[0] < 5 or ($version[0] == 5 and $version[1] <= 4))
+              {$args['file' . $cnt] = '@' . $file  . ';filename=' . basename($file);}
+            else
+              {$args['file' . $cnt] = new CurlFile($file, '', basename($file));}
+           $postfields = array_merge($postfields,  $args);
+        }       
         $ch = curl_init();
         $options = array(
             CURLOPT_URL => $url,
@@ -377,4 +382,4 @@ class WAUtils
     }     
 }
 
-?> 
+?>
